@@ -3,41 +3,36 @@ import axios from "axios";
 import "./app.scss";
 
 export default function App() {
-	let [time, setTime] = useState([]);
-	let [temperature, setTemperature] = useState([]);
+	let [item, setItem] = useState<object>({});
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		setLoading(true);
 		axios
 			.get(
-				`https://api.open-meteo.com/v1/forecast?latitude=45.55&longitude=18.69&hourly=temperature_2m&timezone=Europe%2FBerlin`
+				"https://api.open-meteo.com/v1/forecast?latitude=45.56&longitude=18.69&hourly=temperature_2m&current_weather=true&timezone=Europe%2FBerlin"
 			)
 			.then((response) => {
 				setLoading(false);
-				setTime(response.data.hourly.time);
-				setTemperature(response.data.hourly.temperature_2m);
+				setItem(response.data);
 			})
 			.catch(() => {
 				alert("Error");
 			});
 	}, []);
 
+	console.log(item.current_weather);
+
 	return (
 		<div>
 			{loading ? (
 				<div>Loading...</div>
 			) : (
-				<div className="list">
+				<div>
+					<h1>Day: {item.current_weather.time}</h1>
 					<ul>
-						{time.map((item, id) => {
-							return <li key={id}>{item}</li>;
-						})}
-					</ul>
-					<ul>
-						{temperature.map((item, id) => {
-							return <li key={id}>{item}°C</li>;
-						})}
+						<li>Current temperature: {item.current_weather.temperature}°C</li>
+						<li>Windspeed: {item.current_weather.windspeed} m/s</li>
 					</ul>
 				</div>
 			)}
