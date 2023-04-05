@@ -8,10 +8,11 @@ export default function App() {
 		longitude: number;
 		timezone: string;
 		current_weather: {
-			time: string;
 			temperature: number;
-			windspeed: number;
+			time: string;
 			weathercode: number;
+			winddirection: number;
+			windspeed: number;
 		};
 		hourly: {
 			apparent_temperature: number[];
@@ -54,16 +55,13 @@ export default function App() {
 	}
 
 	let [item, setItem] = useState<APIdata | null>(null);
-	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		setLoading(true);
 		axios
 			.get(
 				"https://api.open-meteo.com/v1/forecast?latitude=45.55&longitude=18.69&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,cloudcover,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
 			)
 			.then((response) => {
-				setLoading(false);
 				setItem(response.data);
 			})
 			.catch(() => {
