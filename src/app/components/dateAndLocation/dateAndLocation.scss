@@ -3,16 +3,34 @@
 	grid-template-columns: repeat(3, 1fr);
 	place-items: center;
 
-	margin-block: 1rem;
+	padding-block: 1rem;
+	border-bottom: 1px solid var(--color-black);
+
+	background-color: var(--color-background);
 
 	p {
+		width: 100%;
+		border-left: 1px solid var(--color-black);
+		border-right: 1px solid var(--color-black);
+
+		&:first-child {
+			border-left: 0;
+		}
+
+		&:last-child {
+			border-right: 0;
+		}
+
 		span {
 			display: block;
 			text-align: center;
 		}
 
 		span:first-child {
+			padding-bottom: 0.25rem;
+
 			font-weight: bold;
+			font-size: 1.2rem;
 		}
 	}
 }

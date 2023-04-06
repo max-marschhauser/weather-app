@@ -1,0 +1,30 @@
+.currentWeather {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	place-items: center;
+
+	padding-block: 1rem;
+	border-bottom: 1px solid var(--color-black);
+
+	background-color: var(--color-background);
+
+	.weathercode {
+		font-size: 2rem;
+	}
+
+	&--info {
+		p {
+			padding-bottom: 0.5rem;
+			text-align: center;
+
+			span {
+				display: block;
+			}
+
+			span:first-child {
+				font-weight: bold;
+				font-size: 1.2rem;
+			}
+		}
+	}
+}

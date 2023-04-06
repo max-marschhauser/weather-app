@@ -2,22 +2,22 @@ import React from "react";
 import "./dateAndLocation.scss";
 
 interface Props {
-	currentDate: string;
-	currentHour: string;
+	date: string | undefined;
+	hour: string | undefined;
 	longitude: number | undefined;
 	latitude: number | undefined;
 }
 
-export default function DateAndLocation({ currentDate, currentHour, longitude, latitude }: Props) {
+export default function DateAndLocation({ date, hour, longitude, latitude }: Props) {
 	return (
 		<div className="dateAndLocation">
 			<p>
 				<span>Date</span>
-				<span>{currentDate}</span>
+				<span>{date}</span>
 			</p>
 			<p>
 				<span>Hour</span>
-				<span>{currentHour}</span>
+				<span>{hour}</span>
 			</p>
 			<p>
 				<span>Location</span>

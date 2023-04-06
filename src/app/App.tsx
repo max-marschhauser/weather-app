@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import axios from "axios";
 import "./app.scss";
 import DateAndLocation from "./components/dateAndLocation/DateAndLocation";
+import CurrentWeather from "./components/currentWeather/CurrentWeather";
+import settingDateAndHour from "./utils/settingDateAndHour";
 
 interface APIdata {
 	latitude: number;
@@ -11,7 +13,6 @@ interface APIdata {
 		temperature: number;
 		time: string;
 		weathercode: number;
-		winddirection: number;
 		windspeed: number;
 	};
 	hourly: {
@@ -57,15 +58,18 @@ interface APIdata {
 export default function App() {
 	// fetching data
 
-	let [item, setItem] = useState<APIdata | null>(null);
+	let [item, setItem] = useState<APIdata | undefined>(undefined);
+	let [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		setLoading(true);
 		axios
 			.get(
 				"https://api.open-meteo.com/v1/forecast?latitude=45.55&longitude=18.69&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,cloudcover,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
 			)
 			.then((response) => {
 				setItem(response.data);
+				setLoading(false);
 			})
 			.catch(() => {
 				alert("Error");
@@ -74,84 +78,31 @@ export default function App() {
 
 	// Creating date and time variables
 
-	const currentTime = item?.current_weather.time;
-	let currentYear: string = "";
-	let currentMonth: string = "";
-	let currentDay: string = "";
-	let currentHour: string = "";
-	let currentDate: string = "";
-
-	if (currentTime !== undefined) {
-		for (let i = 0; i < 4; i++) {
-			currentYear += currentTime[i];
-		}
-
-		for (let i = 5; i < 7; i++) {
-			currentMonth += currentTime[i];
-		}
-
-		for (let i = 8; i < 10; i++) {
-			currentDay += currentTime[i];
-		}
-
-		for (let i = 11; i < 13; i++) {
-			currentHour += currentTime[i];
-		}
-
-		switch (currentMonth) {
-			case "01":
-				currentMonth = "January";
-				break;
-			case "02":
-				currentMonth = "February";
-				break;
-			case "03":
-				currentMonth = "March";
-				break;
-			case "04":
-				currentMonth = "April";
-				break;
-			case "05":
-				currentMonth = "May";
-				break;
-			case "06":
-				currentMonth = "June";
-				break;
-			case "07":
-				currentMonth = "July";
-				break;
-			case "08":
-				currentMonth = "August";
-				break;
-			case "09":
-				currentMonth = "September";
-				break;
-			case "10":
-				currentMonth = "October";
-				break;
-			case "11":
-				currentMonth = "November";
-				break;
-			case "12":
-				currentMonth = "December";
-				break;
-		}
-
-		currentDate = `${currentDay}. ${currentMonth} ${currentYear}.`;
-		currentHour = currentHour + ":00";
-	}
+	const currentTime: string | undefined = item?.current_weather.time;
+	let dateAndHour = settingDateAndHour(currentTime);
 
 	// creating location variables
 
 	let longitude: number | undefined = item?.longitude;
 	let latitude: number | undefined = item?.latitude;
 
+	// current day weather report
+
+	const currentWeatherInfo = item?.current_weather;
+
+	if (loading) {
+		return <div>Loading...</div>;
+	}
+
 	return (
-		<DateAndLocation
-			currentDate={currentDate}
-			currentHour={currentHour}
-			longitude={longitude}
-			latitude={latitude}
-		/>
+		<>
+			<DateAndLocation
+				date={dateAndHour?.currentDate}
+				hour={dateAndHour?.currentHour}
+				longitude={longitude}
+				latitude={latitude}
+			/>
+			<CurrentWeather currentWeatherInfo={currentWeatherInfo} />
+		</>
 	);
 }
