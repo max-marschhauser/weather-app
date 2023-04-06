@@ -1,0 +1,18 @@
+.dateAndLocation {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	place-items: center;
+
+	margin-block: 1rem;
+
+	p {
+		span {
+			display: block;
+			text-align: center;
+		}
+
+		span:first-child {
+			font-weight: bold;
+		}
+	}
+}

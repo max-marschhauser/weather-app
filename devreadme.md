@@ -3,6 +3,8 @@ Vite
 npm install
 npm run dev
 
+napraviti da se miče slide za dnevnu temperaturu, a i da se s tim mijenjaju podaci po satu
+
 WMO Weather interpretation codes (WW)
 Code Description
 0 Clear sky
