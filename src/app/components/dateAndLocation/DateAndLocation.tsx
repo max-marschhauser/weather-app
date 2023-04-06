@@ -1,4 +1,7 @@
+// importing general items
 import React from "react";
+
+// importing styles
 import "./dateAndLocation.scss";
 
 interface Props {

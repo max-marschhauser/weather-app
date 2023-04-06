@@ -1,5 +1,11 @@
+// importing styles
 import React from "react";
+
+// importing styles
 import "./currentWeather.scss";
+
+// importing utils
+import WMODecoder from "../../utils/WMODecoder";
 
 interface Props {
 	currentWeatherInfo?: {
@@ -15,18 +21,21 @@ export default function DateAndLocation({ currentWeatherInfo }: Props) {
 	const windspeed = `${currentWeatherInfo?.windspeed}m/s`;
 
 	return (
-		<div className="currentWeather">
-			<div className="weathercode">{weathercode}</div>
-			<div className="currentWeather--info">
-				<p>
-					<span>Temperature: </span>
-					<span>{temperature}</span>
-				</p>
-				<p>
-					<span>Wind speed: </span>
-					<span>{windspeed}</span>
-				</p>
+		<>
+			<h2>CURRENT WEATHER</h2>
+			<div className="currentWeather">
+				<div className="weathercode">{WMODecoder(weathercode)}</div>
+				<div className="currentWeather--info">
+					<p>
+						<span>Temperature: </span>
+						<span>{temperature}</span>
+					</p>
+					<p>
+						<span>Wind speed: </span>
+						<span>{windspeed}</span>
+					</p>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }

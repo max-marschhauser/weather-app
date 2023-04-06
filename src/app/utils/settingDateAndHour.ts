@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function settingDateAndHour(currentTime: string | undefined) {
 	let currentYear: string = "";
 	let currentMonth: string = "";

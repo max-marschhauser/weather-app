@@ -1,8 +1,15 @@
-import React, { useState, useEffect, Suspense } from "react";
+// importing general items
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+// importing styles
 import "./app.scss";
+
+// importing components
 import DateAndLocation from "./components/dateAndLocation/DateAndLocation";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
+
+// importing utils
 import settingDateAndHour from "./utils/settingDateAndHour";
 
 interface APIdata {
