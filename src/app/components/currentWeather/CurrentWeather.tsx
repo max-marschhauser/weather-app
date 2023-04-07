@@ -13,9 +13,10 @@ interface Props {
 		weathercode: number;
 		windspeed: number;
 	};
+	hour: number | undefined;
 }
 
-export default function DateAndLocation({ currentWeatherInfo }: Props) {
+export default function DateAndLocation({ currentWeatherInfo, hour }: Props) {
 	const temperature = `${currentWeatherInfo?.temperature}°C`;
 	const weathercode = currentWeatherInfo?.weathercode;
 	const windspeed = `${currentWeatherInfo?.windspeed}m/s`;
@@ -24,7 +25,7 @@ export default function DateAndLocation({ currentWeatherInfo }: Props) {
 		<>
 			<h2>CURRENT WEATHER</h2>
 			<div className="currentWeather">
-				<div className="weathercode">{WMODecoder(weathercode)}</div>
+				<div className="weatherIcon">{WMODecoder(weathercode, hour)}</div>
 				<div className="currentWeather--info">
 					<p>
 						<span>Temperature: </span>

@@ -105,11 +105,11 @@ export default function App() {
 		<>
 			<DateAndLocation
 				date={dateAndHour?.currentDate}
-				hour={dateAndHour?.currentHour}
+				hour={dateAndHour?.currentHourString}
 				longitude={longitude}
 				latitude={latitude}
 			/>
-			<CurrentWeather currentWeatherInfo={currentWeatherInfo} />
+			<CurrentWeather currentWeatherInfo={currentWeatherInfo} hour={dateAndHour?.currentHourNumber} />
 		</>
 	);
 }

@@ -2,7 +2,7 @@ export default function settingDateAndHour(currentTime: string | undefined) {
 	let currentYear: string = "";
 	let currentMonth: string = "";
 	let currentDay: string = "";
-	let currentHour: string = "";
+	let currentHourString: string = "";
 	let currentDate: string = "";
 
 	if (currentTime !== undefined) {
@@ -19,7 +19,7 @@ export default function settingDateAndHour(currentTime: string | undefined) {
 		}
 
 		for (let i = 11; i < 13; i++) {
-			currentHour += currentTime[i];
+			currentHourString += currentTime[i];
 		}
 
 		switch (currentMonth) {
@@ -62,8 +62,9 @@ export default function settingDateAndHour(currentTime: string | undefined) {
 		}
 
 		currentDate = `${currentDay}. ${currentMonth} ${currentYear}.`;
-		currentHour = currentHour + ":00h";
+		const currentHourNumber: number = parseInt(currentHourString);
+		currentHourString = currentHourString + ":00h";
 
-		return { currentDate, currentHour };
+		return { currentDate, currentHourString, currentHourNumber };
 	}
 }
