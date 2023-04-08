@@ -8,7 +8,7 @@ import "./currentWeather.scss";
 import WMODecoder from "../../utils/WMODecoder";
 
 interface Props {
-	currentWeatherInfo?: {
+	currentHourWeatherInfo?: {
 		temperature: number;
 		weathercode: number;
 		windspeed: number;
@@ -16,14 +16,13 @@ interface Props {
 	hour: number | undefined;
 }
 
-export default function DateAndLocation({ currentWeatherInfo, hour }: Props) {
-	const temperature = `${currentWeatherInfo?.temperature}°C`;
-	const weathercode = currentWeatherInfo?.weathercode;
-	const windspeed = `${currentWeatherInfo?.windspeed}m/s`;
+export default function DateAndLocation({ currentHourWeatherInfo, hour }: Props) {
+	const temperature = `${currentHourWeatherInfo?.temperature}°C`;
+	const weathercode = currentHourWeatherInfo?.weathercode;
+	const windspeed = `${currentHourWeatherInfo?.windspeed}m/s`;
 
 	return (
 		<>
-			<h2>CURRENT WEATHER</h2>
 			<div className="currentWeather">
 				<div className="weatherIcon">{WMODecoder(weathercode, hour)}</div>
 				<div className="currentWeather--info">

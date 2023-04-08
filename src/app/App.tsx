@@ -8,6 +8,7 @@ import "./app.scss";
 // importing components
 import DateAndLocation from "./components/dateAndLocation/DateAndLocation";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
+import DailyWeather from "./components/dailyWeather/DailyWeather";
 
 // importing utils
 import settingDateAndHour from "./utils/settingDateAndHour";
@@ -72,7 +73,7 @@ export default function App() {
 		setLoading(true);
 		axios
 			.get(
-				"https://api.open-meteo.com/v1/forecast?latitude=45.55&longitude=18.69&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,cloudcover,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
+				"https://api.open-meteo.com/v1/forecast?latitude=45.55&longitude=18.69&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,cloudcover,windspeed_10m&forecast_days=16&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
 			)
 			.then((response) => {
 				setItem(response.data);
@@ -93,9 +94,13 @@ export default function App() {
 	let longitude: number | undefined = item?.longitude;
 	let latitude: number | undefined = item?.latitude;
 
-	// current day weather report
+	// current weather report
 
-	const currentWeatherInfo = item?.current_weather;
+	const currentHourWeatherInfo = item?.current_weather;
+	const currentDayWeatherInfo = item?.hourly;
+	const currentDayWeatherUnits = item?.hourly_units;
+
+	console.log(currentDayWeatherInfo);
 
 	if (loading) {
 		return <div>Loading...</div>;
@@ -109,7 +114,12 @@ export default function App() {
 				longitude={longitude}
 				latitude={latitude}
 			/>
-			<CurrentWeather currentWeatherInfo={currentWeatherInfo} hour={dateAndHour?.currentHourNumber} />
+			<CurrentWeather currentHourWeatherInfo={currentHourWeatherInfo} hour={dateAndHour?.currentHourNumber} />
+			<DailyWeather
+				currentDayWeatherInfo={currentDayWeatherInfo}
+				currentDayWeatherUnits={currentDayWeatherUnits}
+				hour={dateAndHour?.currentHourNumber}
+			/>
 		</>
 	);
 }
