@@ -3,8 +3,8 @@ Vite
 npm install
 npm run dev
 
-napraviti da se miče slide za dnevnu temperaturu, a i da se s tim mijenjaju podaci po satu
+napraviti komponentu između current weather i weekly weather koja će imati slider (HTML input type range) i kad se on miče da se mijenja prognoza po satima za taj dan.
 
-HTML input type range
+Geilocation api s w3schools za automatsko pronalaženje lokacije
 
-Geilocation api s w3schools za pronalaženje lokacije
+na weekly weather prognozi napraviti dialog boxove kad se klikne pojedini datum, pa u njega staviti slider kao i kod daily weather (ako imam takve podatke za svaki dan iduća dva tjedna)
