@@ -8,6 +8,7 @@ import "./app.scss";
 // importing components
 import DateAndLocation from "./components/dateAndLocation/DateAndLocation";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
+import WeeklyWeather from "./components/weeklyWeather/WeeklyWeather";
 import DailyWeather from "./components/dailyWeather/DailyWeather";
 
 // importing utils
@@ -47,18 +48,13 @@ interface APIdata {
 		apparent_temperature_max: number[];
 		apparent_temperature_min: number[];
 		precipitation_probability_max: number[];
-		temperature_2m_max: number[];
-		temperature_2m_min: number[];
 		time: string[];
 		weathercode: number[];
 		windspeed_10m_max: number[];
 	};
 	daily_units: {
 		apparent_temperature_max: string;
-		apparent_temperature_min: string;
 		precipitation_probability_max: string;
-		temperature_2m_max: string;
-		temperature_2m_min: string;
 		windspeed_10m_max: string;
 	};
 }
@@ -73,7 +69,7 @@ export default function App() {
 		setLoading(true);
 		axios
 			.get(
-				"https://api.open-meteo.com/v1/forecast?latitude=45.55&longitude=18.69&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,cloudcover,windspeed_10m&forecast_days=16&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
+				"https://api.open-meteo.com/v1/forecast?latitude=45.55&longitude=18.69&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,cloudcover,windspeed_10m&forecast_days=7&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
 			)
 			.then((response) => {
 				setItem(response.data);
@@ -97,10 +93,10 @@ export default function App() {
 	// current weather report
 
 	const currentHourWeatherInfo = item?.current_weather;
+	const currentWeekWeatherInfo = item?.daily;
+	const currentWeekWeatherUnits = item?.daily_units;
 	const currentDayWeatherInfo = item?.hourly;
 	const currentDayWeatherUnits = item?.hourly_units;
-
-	console.log(currentDayWeatherInfo);
 
 	if (loading) {
 		return <div>Loading...</div>;
@@ -115,6 +111,10 @@ export default function App() {
 				latitude={latitude}
 			/>
 			<CurrentWeather currentHourWeatherInfo={currentHourWeatherInfo} hour={dateAndHour?.currentHourNumber} />
+			<WeeklyWeather
+				currentWeekWeatherInfo={currentWeekWeatherInfo}
+				currentWeekWeatherUnits={currentWeekWeatherUnits}
+			/>
 			<DailyWeather
 				currentDayWeatherInfo={currentDayWeatherInfo}
 				currentDayWeatherUnits={currentDayWeatherUnits}

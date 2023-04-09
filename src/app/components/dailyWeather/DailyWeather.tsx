@@ -28,21 +28,9 @@ interface Props {
 		temperature_2m: string;
 		windspeed_10m: string;
 	};
-	hour: number | undefined;
+	hour?: number;
 }
 
 export default function DailyWeather({ currentDayWeatherInfo, currentDayWeatherUnits, hour }: Props) {
-	return <div className="dailyWeather">DailyWeather</div>;
+	return <div></div>;
 }
-
-// ova komponenta prikazuje prognozu za svaki sat u idućih tjedan dana, ukupno ima 24sata x 16dana podataka (0-383), počinje s današnjim danom u 0:00, a završava sa 16. danom u 23:00
-
-// apparent_teperature
-// cloudcover
-// precipitation
-// precitipation_probability
-// relativehumidity_2m
-// temperature_2m
-// windspeed_10m
-// weathercode
-// time

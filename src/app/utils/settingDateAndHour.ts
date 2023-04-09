@@ -24,40 +24,40 @@ export default function settingDateAndHour(currentTime: string | undefined) {
 
 		switch (currentMonth) {
 			case "01":
-				currentMonth = "January";
+				currentMonth = "january";
 				break;
 			case "02":
-				currentMonth = "February";
+				currentMonth = "february";
 				break;
 			case "03":
-				currentMonth = "March";
+				currentMonth = "march";
 				break;
 			case "04":
-				currentMonth = "April";
+				currentMonth = "april";
 				break;
 			case "05":
-				currentMonth = "May";
+				currentMonth = "may";
 				break;
 			case "06":
-				currentMonth = "June";
+				currentMonth = "june";
 				break;
 			case "07":
-				currentMonth = "July";
+				currentMonth = "july";
 				break;
 			case "08":
-				currentMonth = "August";
+				currentMonth = "august";
 				break;
 			case "09":
-				currentMonth = "September";
+				currentMonth = "september";
 				break;
 			case "10":
-				currentMonth = "October";
+				currentMonth = "october";
 				break;
 			case "11":
-				currentMonth = "November";
+				currentMonth = "november";
 				break;
 			case "12":
-				currentMonth = "December";
+				currentMonth = "december";
 				break;
 		}
 
