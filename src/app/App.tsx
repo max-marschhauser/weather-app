@@ -111,14 +111,14 @@ export default function App() {
 				latitude={latitude}
 			/>
 			<CurrentWeather currentHourWeatherInfo={currentHourWeatherInfo} hour={dateAndHour?.currentHourNumber} />
-			<WeeklyWeather
-				currentWeekWeatherInfo={currentWeekWeatherInfo}
-				currentWeekWeatherUnits={currentWeekWeatherUnits}
-			/>
 			<DailyWeather
 				currentDayWeatherInfo={currentDayWeatherInfo}
 				currentDayWeatherUnits={currentDayWeatherUnits}
 				hour={dateAndHour?.currentHourNumber}
+			/>
+			<WeeklyWeather
+				currentWeekWeatherInfo={currentWeekWeatherInfo}
+				currentWeekWeatherUnits={currentWeekWeatherUnits}
 			/>
 		</>
 	);
