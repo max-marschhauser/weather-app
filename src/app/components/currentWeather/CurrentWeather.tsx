@@ -6,6 +6,7 @@ import "./currentWeather.scss";
 
 // importing utils
 import WMODecoder from "../../utils/WMODecoder";
+import WMODecoderText from "../../utils/WMODecoderText";
 
 interface Props {
 	currentHourWeatherInfo?: {
@@ -24,14 +25,15 @@ export default function DateAndLocation({ currentHourWeatherInfo, hour }: Props)
 	return (
 		<>
 			<div className="currentWeather">
-				<div className="weatherIcon">{WMODecoder(weathercode, hour)}</div>
+				<div>
+					<div className="weatherIcon">{WMODecoder(weathercode, hour)}</div>
+					<p className="weathercodeText">{WMODecoderText(weathercode)}</p>
+				</div>
 				<div className="currentWeather--info">
 					<p>
-						<span>Temperature: </span>
 						<span>{temperature}</span>
 					</p>
 					<p>
-						<span>Wind speed: </span>
 						<span>{windspeed}</span>
 					</p>
 				</div>

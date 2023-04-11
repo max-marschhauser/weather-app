@@ -3,13 +3,16 @@
 	grid-template-columns: repeat(2, 1fr);
 	place-items: center;
 
-	padding-block: 1rem;
-	border-bottom: 1px solid var(--color-black);
+	padding-bottom: 1rem;
 
 	background-color: var(--color-background);
 
 	.weatherIcon {
 		width: 5rem;
+	}
+
+	.weathercodeText {
+		text-align: center;
 	}
 
 	&--info {
@@ -19,10 +22,7 @@
 
 			span {
 				display: block;
-			}
 
-			span:first-child {
-				font-weight: bold;
 				font-size: 1.2rem;
 			}
 		}

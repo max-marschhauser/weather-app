@@ -236,13 +236,17 @@ export default function WeeklyWeather({ currentWeekWeatherInfo, currentWeekWeath
 						<h2>{changeDateFormat(day.time)}</h2>
 						<ul>
 							<li>
-								Max. temp: {day.apparent_temperature_max}
-								{currentWeekWeatherUnits?.apparent_temperature_max}
+								<span>
+									{day.apparent_temperature_max}
+									{currentWeekWeatherUnits?.apparent_temperature_max}
+								</span>
+								|
+								<span>
+									{day.apparent_temperature_min}
+									{currentWeekWeatherUnits?.apparent_temperature_max}
+								</span>
 							</li>
-							<li>
-								Min. temp: {day.apparent_temperature_min}
-								{currentWeekWeatherUnits?.apparent_temperature_max}
-							</li>
+
 							<li>
 								Precipitation: {day.precipitation_probability_max}
 								{currentWeekWeatherUnits?.precipitation_probability_max}
