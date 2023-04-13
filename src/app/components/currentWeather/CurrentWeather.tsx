@@ -25,17 +25,13 @@ export default function DateAndLocation({ currentHourWeatherInfo, hour }: Props)
 	return (
 		<>
 			<div className="currentWeather">
-				<div>
-					<div className="weatherIcon">{WMODecoder(weathercode, hour)}</div>
+				<div className="weathercode">
+					<div className="weathercodeIcon">{WMODecoder(weathercode, hour)}</div>
 					<p className="weathercodeText">{WMODecoderText(weathercode)}</p>
 				</div>
 				<div className="currentWeather--info">
-					<p>
-						<span>{temperature}</span>
-					</p>
-					<p>
-						<span>{windspeed}</span>
-					</p>
+					<p>{temperature}</p>
+					<p>{windspeed}</p>
 				</div>
 			</div>
 		</>

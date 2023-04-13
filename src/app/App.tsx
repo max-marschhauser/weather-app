@@ -8,8 +8,8 @@ import "./app.scss";
 // importing components
 import DateAndLocation from "./components/dateAndLocation/DateAndLocation";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
-import WeeklyWeather from "./components/weeklyWeather/WeeklyWeather";
-import DailyWeather from "./components/dailyWeather/DailyWeather";
+import DailyWeather from "./components/dailyWeather/dailyWeather";
+import HourlyWeather from "./components/hourlyWeather/HourlyWeather";
 
 // importing utils
 import settingDateAndHour from "./utils/settingDateAndHour";
@@ -93,10 +93,10 @@ export default function App() {
 	// current weather report
 
 	const currentHourWeatherInfo = item?.current_weather;
-	const currentWeekWeatherInfo = item?.daily;
-	const currentWeekWeatherUnits = item?.daily_units;
-	const currentDayWeatherInfo = item?.hourly;
-	const currentDayWeatherUnits = item?.hourly_units;
+	const hourlyWeatherInfo = item?.hourly;
+	const hourlyWeatherUnits = item?.hourly_units;
+	const dailyWeatherInfo = item?.daily;
+	const dailyWeatherUnits = item?.daily_units;
 
 	if (loading) {
 		return <div>Loading...</div>;
@@ -111,15 +111,12 @@ export default function App() {
 				latitude={latitude}
 			/>
 			<CurrentWeather currentHourWeatherInfo={currentHourWeatherInfo} hour={dateAndHour?.currentHourNumber} />
-			<DailyWeather
-				currentDayWeatherInfo={currentDayWeatherInfo}
-				currentDayWeatherUnits={currentDayWeatherUnits}
+			<HourlyWeather
+				hourlyWeatherInfo={hourlyWeatherInfo}
+				hourlyWeatherUnits={hourlyWeatherUnits}
 				hour={dateAndHour?.currentHourNumber}
 			/>
-			<WeeklyWeather
-				currentWeekWeatherInfo={currentWeekWeatherInfo}
-				currentWeekWeatherUnits={currentWeekWeatherUnits}
-			/>
+			<DailyWeather dailyWeatherInfo={dailyWeatherInfo} dailyWeatherUnits={dailyWeatherUnits} />
 		</main>
 	);
 }

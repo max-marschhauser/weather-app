@@ -7,24 +7,26 @@
 
 	background-color: var(--color-background);
 
-	.weatherIcon {
-		width: 5rem;
-	}
+	.weathercode {
+		display: grid;
+		grid-template-columns: 1fr;
+		place-items: center;
 
-	.weathercodeText {
-		text-align: center;
+		.weathercodeIcon {
+			width: 5rem;
+		}
+
+		.weathercodeText {
+			text-align: center;
+		}
 	}
 
 	&--info {
 		p {
 			padding-bottom: 0.5rem;
+
 			text-align: center;
-
-			span {
-				display: block;
-
-				font-size: 1.2rem;
-			}
+			font-size: 1.5rem;
 		}
 	}
 }
