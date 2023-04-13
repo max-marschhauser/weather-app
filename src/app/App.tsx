@@ -8,8 +8,9 @@ import "./app.scss";
 // importing components
 import DateAndLocation from "./components/dateAndLocation/DateAndLocation";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
-import DailyWeather from "./components/dailyWeather/dailyWeather";
+import DailyWeather from "./components/dailyWeather/DailyWeather";
 import HourlyWeather from "./components/hourlyWeather/HourlyWeather";
+import Footer from "./components/footer/Footer";
 
 // importing utils
 import settingDateAndHour from "./utils/settingDateAndHour";
@@ -27,7 +28,6 @@ interface APIdata {
 	hourly: {
 		apparent_temperature: number[];
 		cloudcover: number[];
-		precipitation: number[];
 		precipitation_probability: number[];
 		relativehumidity_2m: number[];
 		temperature_2m: number[];
@@ -37,11 +37,7 @@ interface APIdata {
 	};
 	hourly_units: {
 		apparent_temperature: string;
-		cloudcover: string;
-		precipitation: string;
 		precipitation_probability: string;
-		relativehumidity_2m: string;
-		temperature_2m: string;
 		windspeed_10m: string;
 	};
 	daily: {
@@ -69,7 +65,13 @@ export default function App() {
 		setLoading(true);
 		axios
 			.get(
-				"https://api.open-meteo.com/v1/forecast?latitude=45.55&longitude=18.69&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,cloudcover,windspeed_10m&forecast_days=15&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
+				`https://api.open-meteo.com/v1/forecast?
+				latitude=45.55&longitude=18.69&
+				hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,weathercode,cloudcover,windspeed_10m&
+				forecast_days=15&
+				daily=weathercode,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,windspeed_10m_max&
+				current_weather=true&
+				timezone=Europe%2FBerlin`
 			)
 			.then((response) => {
 				setItem(response.data);
@@ -117,6 +119,7 @@ export default function App() {
 				hour={dateAndHour?.currentHourNumber}
 			/>
 			<DailyWeather dailyWeatherInfo={dailyWeatherInfo} dailyWeatherUnits={dailyWeatherUnits} />
+			<Footer />
 		</main>
 	);
 }

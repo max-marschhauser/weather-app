@@ -5,12 +5,14 @@
 
 	padding-bottom: 1rem;
 
-	background-color: var(--color-background);
+	background-color: var(--color-primary);
 
 	.weathercode {
 		display: grid;
 		grid-template-columns: 1fr;
 		place-items: center;
+
+		color: var(--color-white);
 
 		.weathercodeIcon {
 			width: 5rem;
@@ -25,6 +27,7 @@
 		p {
 			padding-bottom: 0.5rem;
 
+			color: var(--color-white);
 			text-align: center;
 			font-size: 1.5rem;
 		}

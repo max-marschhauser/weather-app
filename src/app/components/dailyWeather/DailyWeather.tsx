@@ -246,16 +246,21 @@ export default function DailyWeather({ dailyWeatherInfo, dailyWeatherUnits }: Pr
 									{dailyWeatherUnits?.apparent_temperature_max}
 								</span>
 							</li>
-
 							<li>
-								Precipitation: {day.precipitation_probability_max}
-								{dailyWeatherUnits?.precipitation_probability_max}
+								<span>
+									Precipitation {day.precipitation_probability_max}
+									{dailyWeatherUnits?.precipitation_probability_max}
+								</span>
 							</li>
 							<li>
-								Wind: {day.windspeed_10m_max}
-								{dailyWeatherUnits?.windspeed_10m_max}
+								<span>
+									Wind {day.windspeed_10m_max}
+									{dailyWeatherUnits?.windspeed_10m_max}
+								</span>
 							</li>
-							<li>{WMODecoder(day.weathercode)}</li>
+							<li>
+								<span>{WMODecoder(day.weathercode)}</span>
+							</li>
 						</ul>
 					</article>
 				);

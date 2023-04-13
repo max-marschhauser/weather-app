@@ -4,7 +4,7 @@ export default function settingDateAndHour(weathercode: number | undefined, hour
 	switch (weathercode) {
 		case 0: // Clear sky
 		case 1: // Mainly clear
-			if ((typeof hour === "number" && hour >= 5 && hour <= 21) || typeof hour === "undefined") {
+			if ((typeof hour === "number" && hour >= 5 && hour <= 20) || typeof hour === "undefined") {
 				return (
 					<svg viewBox="0 0 512 512">
 						<path
@@ -43,7 +43,7 @@ export default function settingDateAndHour(weathercode: number | undefined, hour
 			}
 
 		case 2: // Partly cloudy
-			if ((typeof hour === "number" && hour >= 5 && hour <= 21) || typeof hour === "undefined") {
+			if ((typeof hour === "number" && hour >= 5 && hour <= 20) || typeof hour === "undefined") {
 				return (
 					<svg viewBox="0 0 512 512">
 						<path
@@ -86,7 +86,7 @@ export default function settingDateAndHour(weathercode: number | undefined, hour
 			}
 
 		case 3: // Overcast
-			if ((typeof hour === "number" && hour >= 5 && hour <= 21) || typeof hour === "undefined") {
+			if ((typeof hour === "number" && hour >= 5 && hour <= 20) || typeof hour === "undefined") {
 				return (
 					<svg viewBox="0 0 512 512">
 						<path
@@ -122,7 +122,7 @@ export default function settingDateAndHour(weathercode: number | undefined, hour
 
 		case 45: // Fog
 		case 48: // Fog
-			if ((typeof hour === "number" && hour >= 5 && hour <= 21) || typeof hour === "undefined") {
+			if ((typeof hour === "number" && hour >= 5 && hour <= 20) || typeof hour === "undefined") {
 				return (
 					<svg viewBox="0 0 512 512">
 						<path

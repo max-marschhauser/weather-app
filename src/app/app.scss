@@ -6,9 +6,11 @@
 
 :root {
 	--color-black: hsl(0, 0%, 0%);
-	--color-light: hsl(0, 0%, 100%);
-	--color-background: hsla(189, 100%, 50%, 1);
-	--color-dark: hsla(189, 100%, 25%, 1);
+	--color-white: hsl(0, 0%, 100%);
+	--color-primary: hsl(220, 100%, 50%);
+	--color-dark: hsla(220, 100%, 25%, 1);
+	--color-light: hsla(220, 100%, 75%, 1);
+	--color-action: hsl(120, 75%, 75%);
 }
 
 body {

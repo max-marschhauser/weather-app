@@ -5,12 +5,14 @@
 
 	padding-block: 1rem;
 
-	background-color: var(--color-background);
+	background-color: var(--color-primary);
 
 	p {
 		width: 100%;
-		border-left: 1px solid var(--color-black);
-		border-right: 1px solid var(--color-black);
+		border-left: 1px solid var(--color-light);
+		border-right: 1px solid var(--color-light);
+
+		color: var(--color-white);
 
 		&:first-child {
 			border-left: 0;
