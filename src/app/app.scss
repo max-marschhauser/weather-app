@@ -10,3 +10,14 @@
 	--color-background: hsla(189, 100%, 50%, 1);
 	--color-dark: hsla(189, 100%, 25%, 1);
 }
+
+body {
+	display: grid;
+	place-items: center;
+
+	background-color: var(--color-black);
+}
+
+main {
+	max-width: 35rem;
+}

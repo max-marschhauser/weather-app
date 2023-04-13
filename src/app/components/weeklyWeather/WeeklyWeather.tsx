@@ -35,6 +35,8 @@ interface DayCard {
 }
 
 export default function WeeklyWeather({ currentWeekWeatherInfo, currentWeekWeatherUnits }: Props) {
+	console.log(currentWeekWeatherInfo);
+
 	let weeklyWeather: DayCard[] = [
 		{
 			id: 1,

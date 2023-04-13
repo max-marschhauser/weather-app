@@ -32,5 +32,6 @@ interface Props {
 }
 
 export default function DailyWeather({ currentDayWeatherInfo, currentDayWeatherUnits, hour }: Props) {
+	//console.log(currentDayWeatherInfo);
 	return <div></div>;
 }

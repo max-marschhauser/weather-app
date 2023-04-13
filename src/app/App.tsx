@@ -103,7 +103,7 @@ export default function App() {
 	}
 
 	return (
-		<>
+		<main>
 			<DateAndLocation
 				date={dateAndHour?.currentDate}
 				hour={dateAndHour?.currentHourString}
@@ -120,6 +120,6 @@ export default function App() {
 				currentWeekWeatherInfo={currentWeekWeatherInfo}
 				currentWeekWeatherUnits={currentWeekWeatherUnits}
 			/>
-		</>
+		</main>
 	);
 }
