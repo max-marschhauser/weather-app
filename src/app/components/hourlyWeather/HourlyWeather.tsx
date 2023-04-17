@@ -82,12 +82,8 @@ export default function HourlyWeather({ hourlyWeatherInfo, hourlyWeatherUnits, h
 				</button>
 				<div className="main">
 					<ul>
-						<li>
-							<span>{date}</span>
-						</li>
-						<li>
-							<span>{currentHour}:00h</span>
-						</li>
+						<li>{date}</li>
+						<li>{currentHour}:00h</li>
 					</ul>
 					<input type="range" min={0} max={23} value={currentHour} onChange={handleSlideChange} />
 					<ul>
