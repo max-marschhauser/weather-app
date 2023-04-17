@@ -6,11 +6,10 @@ import axios from "axios";
 import "./app.scss";
 
 // importing components
-import DateAndLocation from "./components/dateAndLocation/DateAndLocation";
-import CurrentWeather from "./components/currentWeather/CurrentWeather";
-import DailyWeather from "./components/dailyWeather/DailyWeather";
-import HourlyWeather from "./components/hourlyWeather/HourlyWeather";
-import Footer from "./components/footer/Footer";
+import CurrentWeather from "./components/1currentWeather/CurrentWeather";
+import DailyWeather from "./components/3dailyWeather/DailyWeather";
+import HourlyWeather from "./components/2hourlyWeather/HourlyWeather";
+import Footer from "./components/4footer/Footer";
 
 // importing utils
 import settingDateAndHour from "./utils/settingDateAndHour";
@@ -106,13 +105,14 @@ export default function App() {
 
 	return (
 		<main>
-			<DateAndLocation
+			<CurrentWeather
+				currentHourWeatherInfo={currentHourWeatherInfo}
 				date={dateAndHour?.currentDate}
-				hour={dateAndHour?.currentHourString}
+				hourString={dateAndHour?.currentHourString}
+				hourNumber={dateAndHour?.currentHourNumber}
 				longitude={longitude}
 				latitude={latitude}
 			/>
-			<CurrentWeather currentHourWeatherInfo={currentHourWeatherInfo} hour={dateAndHour?.currentHourNumber} />
 			<HourlyWeather
 				hourlyWeatherInfo={hourlyWeatherInfo}
 				hourlyWeatherUnits={hourlyWeatherUnits}

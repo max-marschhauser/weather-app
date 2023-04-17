@@ -14,19 +14,47 @@ interface Props {
 		weathercode: number;
 		windspeed: number;
 	};
-	hour: number | undefined;
+	date: string | undefined;
+	hourString: string | undefined;
+	hourNumber: number | undefined;
+	longitude: number | undefined;
+	latitude: number | undefined;
 }
 
-export default function DateAndLocation({ currentHourWeatherInfo, hour }: Props) {
+export default function DateAndLocation({
+	currentHourWeatherInfo,
+	date,
+	hourString,
+	hourNumber,
+	longitude,
+	latitude,
+}: Props) {
 	const temperature = `${currentHourWeatherInfo?.temperature} °C`;
 	const weathercode = currentHourWeatherInfo?.weathercode;
 	const windspeed = `${currentHourWeatherInfo?.windspeed} m/s`;
 
 	return (
 		<>
+			<div className="dateAndLocation">
+				<p>
+					<span>Date</span>
+					<span>{date}</span>
+				</p>
+				<p>
+					<span>Hour</span>
+					<span>{hourString}</span>
+				</p>
+				<p>
+					<span>Location</span>
+					<span>
+						{longitude} / {latitude}
+					</span>
+				</p>
+			</div>
+
 			<div className="currentWeather">
 				<div className="weathercode">
-					<div className="weathercodeIcon">{WMODecoder(weathercode, hour)}</div>
+					<div className="weathercodeIcon">{WMODecoder(weathercode, hourNumber)}</div>
 					<p className="weathercodeText">{WMODecoderText(weathercode)}</p>
 				</div>
 				<div className="currentWeather--info">

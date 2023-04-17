@@ -1,0 +1,38 @@
+.footer {
+	padding-block: 3rem;
+
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	place-items: center;
+	row-gap: 2rem;
+
+	background-color: var(--color-dark);
+
+	color: var(--color-white);
+	font-size: 1.2rem;
+	text-align: center;
+
+	p {
+		font-weight: var(--font-light);
+
+		span {
+			display: block;
+
+			font-weight: var(--font-bold);
+		}
+
+		a {
+			text-decoration: none;
+			color: var(--color-white);
+			border-bottom: 0.1rem solid var(--color-action);
+
+			transition: all 0.35s ease;
+
+			&:hover,
+			&:focus-visible,
+			&:active {
+				opacity: 0.9;
+			}
+		}
+	}
+}
