@@ -58,8 +58,14 @@ export default function DateAndLocation({
 					<p className="weathercodeText">{WMODecoderText(weathercode)}</p>
 				</div>
 				<div className="currentWeather--info">
-					<p>{temperature}</p>
-					<p>{windspeed}</p>
+					<p>
+						<span>Temperature</span>
+						{temperature}
+					</p>
+					<p>
+						<span>Wind</span>
+						{windspeed}
+					</p>
 				</div>
 			</div>
 		</>

@@ -69,8 +69,13 @@
 		p {
 			color: var(--color-white);
 			text-align: center;
-			font-size: 1.5rem;
+			font-size: 1.25rem;
 			font-weight: var(--font-light);
+
+			span {
+				display: block;
+				font-weight: var(--font-bold);
+			}
 		}
 	}
 }

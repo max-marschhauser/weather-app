@@ -104,16 +104,8 @@ export default function HourlyWeather({ hourlyWeatherInfo, hourlyWeatherUnits, h
 							{wind}
 						</li>
 						<li>
-							<span>Cloudcover</span>
-							{cloudcover}
-						</li>
-						<li>
 							<span>Precipitation</span>
 							{precipitation}
-						</li>
-						<li>
-							<span>Humidity</span>
-							{humidity}
 						</li>
 						<li>
 							<span>{WMODecoderText(hourlyWeatherInfo?.weathercode[equation])}</span>
