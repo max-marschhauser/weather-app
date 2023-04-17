@@ -18,9 +18,9 @@ interface Props {
 }
 
 export default function DateAndLocation({ currentHourWeatherInfo, hour }: Props) {
-	const temperature = `${currentHourWeatherInfo?.temperature}°C`;
+	const temperature = `${currentHourWeatherInfo?.temperature} °C`;
 	const weathercode = currentHourWeatherInfo?.weathercode;
-	const windspeed = `${currentHourWeatherInfo?.windspeed}m/s`;
+	const windspeed = `${currentHourWeatherInfo?.windspeed} m/s`;
 
 	return (
 		<>

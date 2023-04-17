@@ -32,24 +32,31 @@ interface Props {
 export default function HourlyWeather({ hourlyWeatherInfo, hourlyWeatherUnits, hour }: Props) {
 	if (typeof hour === "number") {
 		const [currentHour, setCurrentHour] = useState<number>(hour);
+		const [currentDay, setCurrentDay] = useState<number>(1);
+
+		const equation = currentHour + currentDay * 24 - 24;
 
 		const handleSlideChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 			setCurrentHour(Number(event.target.value));
 		};
 
-		let dateAndHour = settingDateAndHour(hourlyWeatherInfo?.time[currentHour].toString());
+		let dateAndHour = settingDateAndHour(hourlyWeatherInfo?.time[equation].toString());
 		let date = dateAndHour?.currentDate;
 
 		function nextDay() {
-			setCurrentHour((hour) => {
-				return (hour += 24);
-			});
+			if (currentDay <= 14) {
+				setCurrentDay((day) => {
+					return (day = day + 1);
+				});
+			}
 		}
 
 		function previousDay() {
-			setCurrentHour((hour) => {
-				return (hour -= 24);
-			});
+			if (currentDay >= 2) {
+				setCurrentDay((day) => {
+					return (day = day - 1);
+				});
+			}
 		}
 
 		return (
@@ -75,38 +82,38 @@ export default function HourlyWeather({ hourlyWeatherInfo, hourlyWeatherUnits, h
 					<ul>
 						<li>
 							<span>Temperature </span>
-							{hourlyWeatherInfo?.temperature_2m[currentHour]}
+							{hourlyWeatherInfo?.temperature_2m[equation]}
 							{hourlyWeatherUnits?.apparent_temperature}
 						</li>
 						<li>
 							<span>Real Feel </span>
-							{hourlyWeatherInfo?.apparent_temperature[currentHour]}
+							{hourlyWeatherInfo?.apparent_temperature[equation]}
 							{hourlyWeatherUnits?.apparent_temperature}
 						</li>
 						<li>
 							<span>Wind </span>
-							{hourlyWeatherInfo?.windspeed_10m[currentHour]}
+							{hourlyWeatherInfo?.windspeed_10m[equation]}
 							{hourlyWeatherUnits?.windspeed_10m}
 						</li>
 						<li>
-							<span>Cloudcover </span> {hourlyWeatherInfo?.cloudcover[currentHour]}
+							<span>Cloudcover </span> {hourlyWeatherInfo?.cloudcover[equation]}
 							{hourlyWeatherUnits?.precipitation_probability}
 						</li>
 						<li>
 							<span>Precipitation </span>
-							{hourlyWeatherInfo?.precipitation_probability[currentHour]}
+							{hourlyWeatherInfo?.precipitation_probability[equation]}
 							{hourlyWeatherUnits?.precipitation_probability}
 						</li>
 						<li>
 							<span>Humidity </span>
-							{hourlyWeatherInfo?.relativehumidity_2m[currentHour]}
+							{hourlyWeatherInfo?.relativehumidity_2m[equation]}
 							{hourlyWeatherUnits?.precipitation_probability}
 						</li>
 						<li>
-							<span>{WMODecoderText(hourlyWeatherInfo?.weathercode[currentHour])}</span>
+							<span>{WMODecoderText(hourlyWeatherInfo?.weathercode[equation])}</span>
 						</li>
 						<li>
-							<span>{WMODecoder(hourlyWeatherInfo?.weathercode[currentHour], currentHour)}</span>
+							<span>{WMODecoder(hourlyWeatherInfo?.weathercode[equation], currentHour)}</span>
 						</li>
 					</ul>
 				</div>
