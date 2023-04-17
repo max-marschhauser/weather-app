@@ -59,6 +59,13 @@ export default function HourlyWeather({ hourlyWeatherInfo, hourlyWeatherUnits, h
 			}
 		}
 
+		const temperature = `${hourlyWeatherInfo?.temperature_2m[equation]} ${hourlyWeatherUnits?.apparent_temperature}`;
+		const realFeel = `${hourlyWeatherInfo?.apparent_temperature[equation]} ${hourlyWeatherUnits?.apparent_temperature}`;
+		const wind = `${hourlyWeatherInfo?.windspeed_10m[equation]} ${hourlyWeatherUnits?.windspeed_10m}`;
+		const cloudcover = ` ${hourlyWeatherInfo?.cloudcover[equation]} ${hourlyWeatherUnits?.precipitation_probability}`;
+		const precipitation = `	${hourlyWeatherInfo?.precipitation_probability[equation]} ${hourlyWeatherUnits?.precipitation_probability}`;
+		const humidity = `	${hourlyWeatherInfo?.relativehumidity_2m[equation]} ${hourlyWeatherUnits?.precipitation_probability}`;
+
 		return (
 			<div className="hourlyWeather">
 				<button onClick={previousDay}>
@@ -85,33 +92,28 @@ export default function HourlyWeather({ hourlyWeatherInfo, hourlyWeatherUnits, h
 					<input type="range" min={0} max={23} value={currentHour} onChange={handleSlideChange} />
 					<ul>
 						<li>
-							<span>Temperature </span>
-							{hourlyWeatherInfo?.temperature_2m[equation]}
-							{hourlyWeatherUnits?.apparent_temperature}
+							<span>Temperature</span>
+							{temperature}
 						</li>
 						<li>
-							<span>Real Feel </span>
-							{hourlyWeatherInfo?.apparent_temperature[equation]}
-							{hourlyWeatherUnits?.apparent_temperature}
+							<span>Real Feel</span>
+							{realFeel}
 						</li>
 						<li>
-							<span>Wind </span>
-							{hourlyWeatherInfo?.windspeed_10m[equation]}
-							{hourlyWeatherUnits?.windspeed_10m}
+							<span>Wind</span>
+							{wind}
 						</li>
 						<li>
-							<span>Cloudcover </span> {hourlyWeatherInfo?.cloudcover[equation]}
-							{hourlyWeatherUnits?.precipitation_probability}
+							<span>Cloudcover</span>
+							{cloudcover}
 						</li>
 						<li>
-							<span>Precipitation </span>
-							{hourlyWeatherInfo?.precipitation_probability[equation]}
-							{hourlyWeatherUnits?.precipitation_probability}
+							<span>Precipitation</span>
+							{precipitation}
 						</li>
 						<li>
-							<span>Humidity </span>
-							{hourlyWeatherInfo?.relativehumidity_2m[equation]}
-							{hourlyWeatherUnits?.precipitation_probability}
+							<span>Humidity</span>
+							{humidity}
 						</li>
 						<li>
 							<span>{WMODecoderText(hourlyWeatherInfo?.weathercode[equation])}</span>

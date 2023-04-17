@@ -86,12 +86,12 @@
 
 			li {
 				text-align: center;
-				font-weight: 300;
+				font-weight: var(--font-light);
 				font-size: 1.1rem;
 
 				span {
 					display: block;
-					font-weight: bold;
+					font-weight: var(--font-bold);
 					letter-spacing: 0.05rem;
 				}
 				svg {

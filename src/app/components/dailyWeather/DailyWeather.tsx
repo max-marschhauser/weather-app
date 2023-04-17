@@ -231,36 +231,21 @@ export default function DailyWeather({ dailyWeatherInfo, dailyWeatherUnits }: Pr
 	return (
 		<div className="dailyWeather">
 			{dailyWeather.map((day) => {
+				const apperentTemperatureMax = `${day.apparent_temperature_max} ${dailyWeatherUnits?.apparent_temperature_max}`;
+				const apperentTemperatureMin = `${day.apparent_temperature_min} ${dailyWeatherUnits?.apparent_temperature_max}`;
+				const precipitation = `${day.precipitation_probability_max} ${dailyWeatherUnits?.precipitation_probability_max}`;
+				const wind = `${day.windspeed_10m_max} ${dailyWeatherUnits?.windspeed_10m_max}`;
+
 				return (
 					<article key={day.id}>
 						<h2>{changeDateFormat(day.time)}</h2>
 						<ul>
 							<li>
-								<span>
-									{day.apparent_temperature_max}
-									{dailyWeatherUnits?.apparent_temperature_max}
-								</span>
-								|
-								<span>
-									{day.apparent_temperature_min}
-									{dailyWeatherUnits?.apparent_temperature_max}
-								</span>
+								<span>{apperentTemperatureMax}</span>|<span>{apperentTemperatureMin}</span>
 							</li>
-							<li>
-								<span>
-									Precipitation {day.precipitation_probability_max}
-									{dailyWeatherUnits?.precipitation_probability_max}
-								</span>
-							</li>
-							<li>
-								<span>
-									Wind {day.windspeed_10m_max}
-									{dailyWeatherUnits?.windspeed_10m_max}
-								</span>
-							</li>
-							<li>
-								<span>{WMODecoder(day.weathercode)}</span>
-							</li>
+							<li>Precipitation {precipitation}</li>
+							<li>Wind {wind}</li>
+							<li>{WMODecoder(day.weathercode)}</li>
 						</ul>
 					</article>
 				);
