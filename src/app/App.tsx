@@ -54,18 +54,24 @@ interface APIdata {
 	};
 }
 
+interface Coords {
+	longitude: number;
+	latitude: number;
+}
+
 export default function App() {
 	// fetching data
 
 	let [item, setItem] = useState<APIdata | undefined>(undefined);
 	let [loading, setLoading] = useState(true);
+	let [coords, setCoords] = useState({ latitude: 45.55, longitude: 18.69 });
 
 	useEffect(() => {
 		setLoading(true);
 		axios
 			.get(
 				`https://api.open-meteo.com/v1/forecast?
-				latitude=45.55&longitude=18.69&
+				latitude=${coords.latitude}&longitude=${coords.longitude}&
 				hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,weathercode,cloudcover,windspeed_10m&
 				forecast_days=15&
 				daily=weathercode,apparent_temperature_max,apparent_temperature_min,precipitation_probability_max,windspeed_10m_max&
@@ -79,7 +85,7 @@ export default function App() {
 			.catch(() => {
 				alert("Error");
 			});
-	}, []);
+	}, [coords]);
 
 	// Creating date and time variables
 

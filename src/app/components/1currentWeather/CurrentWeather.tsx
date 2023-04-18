@@ -1,5 +1,5 @@
 // importing styles
-import React from "react";
+import React, { useState } from "react";
 
 // importing styles
 import "./currentWeather.scss";
@@ -33,6 +33,16 @@ export default function DateAndLocation({
 	const weathercode = currentHourWeatherInfo?.weathercode;
 	const windspeed = `${currentHourWeatherInfo?.windspeed} m/s`;
 
+	let [locationModal, setLocationModal] = useState(false);
+
+	function handleLocationModal() {
+		setLocationModal((prev) => !prev);
+	}
+
+	function ChangeLocation() {
+		return <div className="changeLocation">ChangeLocation</div>;
+	}
+
 	return (
 		<>
 			<div className="dateAndLocation">
@@ -44,14 +54,14 @@ export default function DateAndLocation({
 					<span>Hour</span>
 					<span>{hourString}</span>
 				</p>
-				<p>
+				<button onClick={handleLocationModal}>
 					<span>Location</span>
 					<span>
 						{longitude} / {latitude}
 					</span>
-				</p>
+				</button>
 			</div>
-
+			{locationModal ? <ChangeLocation /> : <></>}
 			<div className="currentWeather">
 				<div className="weathercode">
 					<div className="weathercodeIcon">{WMODecoder(weathercode, hourNumber)}</div>
