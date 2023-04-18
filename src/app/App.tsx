@@ -26,9 +26,7 @@ interface APIdata {
 	};
 	hourly: {
 		apparent_temperature: number[];
-		cloudcover: number[];
 		precipitation_probability: number[];
-		relativehumidity_2m: number[];
 		temperature_2m: number[];
 		time: number[];
 		weathercode: number[];

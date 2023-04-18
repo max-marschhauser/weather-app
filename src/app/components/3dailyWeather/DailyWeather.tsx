@@ -231,10 +231,33 @@ export default function DailyWeather({ dailyWeatherInfo, dailyWeatherUnits }: Pr
 	return (
 		<div className="dailyWeather">
 			{dailyWeather.map((day) => {
-				const apperentTemperatureMax = `${day.apparent_temperature_max} ${dailyWeatherUnits?.apparent_temperature_max}`;
-				const apperentTemperatureMin = `${day.apparent_temperature_min} ${dailyWeatherUnits?.apparent_temperature_max}`;
-				const precipitation = `${day.precipitation_probability_max} ${dailyWeatherUnits?.precipitation_probability_max}`;
-				const wind = `${day.windspeed_10m_max} ${dailyWeatherUnits?.windspeed_10m_max}`;
+				let apperentTemperatureMax;
+				if (typeof day.apparent_temperature_max !== "number") {
+					apperentTemperatureMax = `No data`;
+				} else {
+					apperentTemperatureMax = `${day.apparent_temperature_max} ${dailyWeatherUnits?.apparent_temperature_max}`;
+				}
+
+				let apperentTemperatureMin;
+				if (typeof day.apparent_temperature_min !== "number") {
+					apperentTemperatureMin = `No data`;
+				} else {
+					apperentTemperatureMin = `${day.apparent_temperature_min} ${dailyWeatherUnits?.apparent_temperature_max}`;
+				}
+
+				let precipitation;
+				if (typeof day.precipitation_probability_max !== "number") {
+					precipitation = `No data`;
+				} else {
+					precipitation = `${day.precipitation_probability_max} ${dailyWeatherUnits?.precipitation_probability_max}`;
+				}
+
+				let wind;
+				if (typeof day.windspeed_10m_max !== "number") {
+					wind = `No data`;
+				} else {
+					wind = `${day.windspeed_10m_max} ${dailyWeatherUnits?.windspeed_10m_max}`;
+				}
 
 				return (
 					<article key={day.id}>

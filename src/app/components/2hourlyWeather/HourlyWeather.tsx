@@ -12,10 +12,7 @@ import settingDateAndHour from "../../utils/settingDateAndHour";
 interface Props {
 	hourlyWeatherInfo?: {
 		apparent_temperature: number[];
-		cloudcover: number[];
-
 		precipitation_probability: number[];
-		relativehumidity_2m: number[];
 		temperature_2m: number[];
 		time: number[];
 		weathercode: number[];
@@ -59,12 +56,33 @@ export default function HourlyWeather({ hourlyWeatherInfo, hourlyWeatherUnits, h
 			}
 		}
 
-		const temperature = `${hourlyWeatherInfo?.temperature_2m[equation]} ${hourlyWeatherUnits?.apparent_temperature}`;
-		const realFeel = `${hourlyWeatherInfo?.apparent_temperature[equation]} ${hourlyWeatherUnits?.apparent_temperature}`;
-		const wind = `${hourlyWeatherInfo?.windspeed_10m[equation]} ${hourlyWeatherUnits?.windspeed_10m}`;
-		const cloudcover = ` ${hourlyWeatherInfo?.cloudcover[equation]} ${hourlyWeatherUnits?.precipitation_probability}`;
-		const precipitation = `	${hourlyWeatherInfo?.precipitation_probability[equation]} ${hourlyWeatherUnits?.precipitation_probability}`;
-		const humidity = `	${hourlyWeatherInfo?.relativehumidity_2m[equation]} ${hourlyWeatherUnits?.precipitation_probability}`;
+		let temperature;
+		if (typeof hourlyWeatherInfo?.temperature_2m[equation] !== "number") {
+			temperature = `No data`;
+		} else {
+			temperature = `${hourlyWeatherInfo?.temperature_2m[equation]} ${hourlyWeatherUnits?.apparent_temperature}`;
+		}
+
+		let realFeel;
+		if (typeof hourlyWeatherInfo?.apparent_temperature[equation] !== "number") {
+			realFeel = `No data`;
+		} else {
+			realFeel = `${hourlyWeatherInfo?.apparent_temperature[equation]} ${hourlyWeatherUnits?.apparent_temperature}`;
+		}
+
+		let wind;
+		if (typeof hourlyWeatherInfo?.windspeed_10m[equation] !== "number") {
+			wind = `No data`;
+		} else {
+			wind = `${hourlyWeatherInfo?.windspeed_10m[equation]} ${hourlyWeatherUnits?.windspeed_10m}`;
+		}
+
+		let precipitation;
+		if (typeof hourlyWeatherInfo?.precipitation_probability[equation] !== "number") {
+			precipitation = `No data`;
+		} else {
+			precipitation = `${hourlyWeatherInfo?.precipitation_probability[equation]} ${hourlyWeatherUnits?.precipitation_probability}`;
+		}
 
 		return (
 			<div className="hourlyWeather">
