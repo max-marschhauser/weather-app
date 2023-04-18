@@ -54,17 +54,12 @@ interface APIdata {
 	};
 }
 
-interface Coords {
-	longitude: number;
-	latitude: number;
-}
-
 export default function App() {
 	// fetching data
 
 	let [item, setItem] = useState<APIdata | undefined>(undefined);
 	let [loading, setLoading] = useState(true);
-	let [coords, setCoords] = useState({ latitude: 45.55, longitude: 18.69 });
+	let [coords, setCoords] = useState({ latitude: 45.55, longitude: 18.69, city: "Osijek" });
 
 	useEffect(() => {
 		setLoading(true);
@@ -87,15 +82,14 @@ export default function App() {
 			});
 	}, [coords]);
 
+	function handleCoordsChange(newCoords: { newLatitude: number; newLongitude: number; newCity: string }) {
+		setCoords({ latitude: newCoords.newLatitude, longitude: newCoords.newLongitude, city: newCoords.newCity });
+	}
+
 	// Creating date and time variables
 
 	const currentTime: string | undefined = item?.current_weather.time;
 	let dateAndHour = settingDateAndHour(currentTime);
-
-	// creating location variables
-
-	let longitude: number | undefined = item?.longitude;
-	let latitude: number | undefined = item?.latitude;
 
 	// current weather report
 
@@ -116,8 +110,8 @@ export default function App() {
 				date={dateAndHour?.currentDate}
 				hourString={dateAndHour?.currentHourString}
 				hourNumber={dateAndHour?.currentHourNumber}
-				longitude={longitude}
-				latitude={latitude}
+				city={coords.city}
+				handleCoordsChange={handleCoordsChange}
 			/>
 			<HourlyWeather
 				hourlyWeatherInfo={hourlyWeatherInfo}

@@ -59,7 +59,51 @@
 }
 
 .changeLocation {
-	background-color: var(--color-primary);
+	padding-block: 1rem;
+
+	background-color: var(--color-dark);
+
+	h2 {
+		text-align: center;
+		color: var(--color-white);
+	}
+
+	ul {
+		padding-block: 1rem;
+
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		place-items: center;
+		row-gap: 1rem;
+
+		list-style: none;
+
+		li {
+			width: 80%;
+
+			button {
+				width: 100%;
+				border: none;
+
+				background-color: var(--color-dark);
+				outline: 0.1rem solid var(--color-white);
+
+				font-size: 1.2rem;
+				font-weight: var(--font-bold);
+				color: var(--color-white);
+
+				cursor: pointer;
+
+				transition: all 0.35s ease;
+
+				&:hover,
+				&:focus-visible,
+				&:active {
+					opacity: 0.75;
+				}
+			}
+		}
+	}
 }
 
 .currentWeather {
@@ -67,7 +111,7 @@
 	grid-template-columns: repeat(2, 1fr);
 	place-items: center;
 
-	padding-bottom: 1rem;
+	padding-block: 1rem;
 
 	background-color: var(--color-primary);
 

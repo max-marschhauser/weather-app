@@ -17,8 +17,8 @@ interface Props {
 	date: string | undefined;
 	hourString: string | undefined;
 	hourNumber: number | undefined;
-	longitude: number | undefined;
-	latitude: number | undefined;
+	city: string | undefined;
+	handleCoordsChange: Function;
 }
 
 export default function DateAndLocation({
@@ -26,8 +26,8 @@ export default function DateAndLocation({
 	date,
 	hourString,
 	hourNumber,
-	longitude,
-	latitude,
+	city,
+	handleCoordsChange,
 }: Props) {
 	const temperature = `${currentHourWeatherInfo?.temperature} °C`;
 	const weathercode = currentHourWeatherInfo?.weathercode;
@@ -39,8 +39,56 @@ export default function DateAndLocation({
 		setLocationModal((prev) => !prev);
 	}
 
+	function handleLocationChange(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+		let location = (event.target as HTMLInputElement).value;
+
+		switch (location) {
+			case "Zagreb":
+				handleCoordsChange({ newLatitude: 45.82, newLongitude: 15.97, newCity: "Zagreb" });
+				break;
+			case "Split":
+				handleCoordsChange({ newLatitude: 43.51, newLongitude: 16.44, newCity: "Split" });
+				break;
+			case "Rijeka":
+				handleCoordsChange({ newLatitude: 45.33, newLongitude: 14.46, newCity: "Rijeka" });
+				break;
+			case "Osijek":
+				handleCoordsChange({ newLatitude: 45.55, newLongitude: 18.69, newCity: "Osijek" });
+				break;
+			default:
+				console.log("Error");
+				break;
+		}
+	}
+
 	function ChangeLocation() {
-		return <div className="changeLocation">ChangeLocation</div>;
+		return (
+			<div className="changeLocation">
+				<h2>Change Location</h2>
+				<ul>
+					<li>
+						<button onClick={handleLocationChange} value="Zagreb">
+							Zagreb
+						</button>
+					</li>
+					<li>
+						<button onClick={handleLocationChange} value="Split">
+							Split
+						</button>
+					</li>
+					<li>
+						<button onClick={handleLocationChange} value="Rijeka">
+							Rijeka
+						</button>
+					</li>
+					<li>
+						<button onClick={handleLocationChange} value="Osijek">
+							Osijek
+						</button>
+					</li>
+				</ul>
+			</div>
+		);
 	}
 
 	return (
@@ -56,9 +104,7 @@ export default function DateAndLocation({
 				</p>
 				<button onClick={handleLocationModal}>
 					<span>Location</span>
-					<span>
-						{longitude} / {latitude}
-					</span>
+					<span>{city}</span>
 				</button>
 			</div>
 			{locationModal ? <ChangeLocation /> : <></>}
